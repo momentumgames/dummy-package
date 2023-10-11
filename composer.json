@@ -1,0 +1,42 @@
+{
+    "name": "momentumgames/dummy-package",
+    "description": "A simple dummy package for demonstration",
+    "type": "library",
+    "authors": [
+        {
+            "name": "MomentumGames",
+            "email": "developers@momentumgames.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MomentumGames\\DummyPackage\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MomentumGames\\DummyPackage\\DummyPackageServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "php artisan vendor:publish --tag=dummy-routes",
+            "composer dump-autoload"
+        ],
+        "post-update-cmd": [
+            "php artisan vendor:publish --tag=dummy-routes",
+            "composer dump-autoload"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/momentumgames/dummy-package"
+        }
+    ]
+}
